@@ -10,9 +10,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClienteController : ApiController
     {
 
@@ -32,6 +34,28 @@ namespace API.Controllers
                 using (var dbCliente = new ClienteRep())
                 {
                     dbCliente.Insert(cliente);
+                }
+            }
+        }
+
+        public void Put([FromBody] Cliente cliente)
+        {
+            if (cliente != null)
+            {
+                using (var dbCliente = new ClienteRep())
+                {
+                    dbCliente.Update(cliente);
+                }
+            }
+        }
+
+        public void Delete([FromBody] Cliente cliente)
+        {
+            if (cliente != null)
+            {
+                using (var dbCliente = new ClienteRep())
+                {
+                    dbCliente.Delete(cliente);
                 }
             }
         }

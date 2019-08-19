@@ -9,6 +9,9 @@ namespace API
     {
         public static void Register(HttpConfiguration config)
         {
+            // Configurando o CORS
+            config.EnableCors();
+
             // Web API configuration and services
 
             // Web API routes
@@ -19,6 +22,10 @@ namespace API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+
         }
     }
 }

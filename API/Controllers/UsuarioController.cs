@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuarioController : ApiController
     {
         public IEnumerable<Usuario> Get()
@@ -27,6 +28,28 @@ namespace API.Controllers
                 using (var dbUsuario = new UsuarioRep())
                 {
                     dbUsuario.Insert(usuario);
+                }
+            }
+        }
+
+        public void Put([FromBody] Usuario usuario)
+        {
+            if (usuario != null)
+            {
+                using (var dbCliente = new UsuarioRep())
+                {
+                    dbCliente.Update(usuario);
+                }
+            }
+        }
+
+        public void Delete([FromBody] Usuario usuario)
+        {
+            if (usuario != null)
+            {
+                using (var dbCliente = new UsuarioRep())
+                {
+                    dbCliente.Delete(usuario);
                 }
             }
         }
