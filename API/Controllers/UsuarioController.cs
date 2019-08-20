@@ -13,11 +13,23 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuarioController : ApiController
     {
+        [HttpGet]
+        [Route("api/Usuario/Get")]
         public IEnumerable<Usuario> Get()
         {
             using (var dbUsuario = new UsuarioRep())
             {
                 return dbUsuario.GetAll().ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Usuario/GetId")]
+        public Usuario GetId([FromBody] Int32 Id)
+        {
+            using (var db = new UsuarioRep())
+            {
+                return db.Get(Id);
             }
         }
 

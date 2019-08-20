@@ -18,11 +18,23 @@ namespace API.Controllers
     public class ClienteController : ApiController
     {
 
+        [HttpGet]
+        [Route("api/Cliente/Get")]
         public IEnumerable<Cliente> Get()
         {
             using (var dbCliente = new ClienteRep())
             {
                 return dbCliente.GetAll().ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Cliente/GetId")]
+        public Cliente GetId([FromBody] int Id)
+        {
+            using (var db = new ClienteRep())
+            {
+                return db.Get(Id);
             }
         }
 
