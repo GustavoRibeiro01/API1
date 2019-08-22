@@ -30,12 +30,17 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Cliente/GetId")]
-        public Cliente GetId([FromBody] int Id)
+        public Cliente Get([FromUri]int id)
         {
-            using (var db = new ClienteRep())
+            if (id != 0)
             {
-                return db.Get(Id);
+                using (var db = new ClienteRep())
+                {
+                    return db.Get(id);
+                }
             }
+
+            return null;
         }
 
         public void Post([FromBody] Cliente cliente)
