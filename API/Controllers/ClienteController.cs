@@ -52,10 +52,10 @@ namespace API.Controllers
             {
                 List<Cliente> Clientes = db.GetFilter(id, nome, cpf, sexo, profissao).ToList();
 
-                if (Clientes.Any())
-                    return Clientes.ToList();
+                // if (Clientes.Any())
+                return Clientes.ToList();
 
-                return db.GetAll();
+                //return db.GetAll();
             }
 
         }
