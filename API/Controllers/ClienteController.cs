@@ -43,6 +43,18 @@ namespace API.Controllers
             return null;
         }
 
+        [HttpGet]
+        [Route("api/Cliente/GetFilter")]
+        public IEnumerable<Cliente> GetFilter([FromUri]int id = 0, string nome = null, string cpf = null, string sexo = null, string profissao = null)
+        {
+
+            using (var db = new ClienteRep())
+            {
+                return db.GetFilter(id, nome, cpf, sexo, profissao).ToList();
+            }
+
+        }
+
         public void Post([FromBody] Cliente cliente)
         {
 
