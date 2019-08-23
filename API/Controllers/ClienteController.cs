@@ -50,7 +50,12 @@ namespace API.Controllers
 
             using (var db = new ClienteRep())
             {
-                return db.GetFilter(id, nome, cpf, sexo, profissao).ToList();
+                List<Cliente> Clientes = db.GetFilter(id, nome, cpf, sexo, profissao).ToList();
+
+                if (Clientes.Any())
+                    return Clientes.ToList();
+
+                return db.GetAll();
             }
 
         }
