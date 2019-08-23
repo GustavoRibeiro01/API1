@@ -57,13 +57,13 @@ namespace API.Controllers
             }
         }
 
-        public void Delete([FromBody] Leitura leitura)
+        public void Delete([FromUri] int id)
         {
-            if (leitura != null)
+            if (id != 0)
             {
                 using (var db = new LeituraRep())
                 {
-                    db.Delete(leitura);
+                    db.Delete(id);
                 }
             }
         }

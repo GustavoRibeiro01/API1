@@ -56,13 +56,13 @@ namespace API.Controllers
             }
         }
 
-        public void Delete([FromBody] Antena antena)
+        public void Delete([FromUri] int id)
         {
-            if (antena != null)
+            if (id != 0)
             {
                 using (var db = new AntenaRep())
                 {
-                    db.Delete(antena);
+                    db.Delete(id);
                 }
             }
         }

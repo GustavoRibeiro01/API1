@@ -1,5 +1,5 @@
 ﻿using API.Models;
-using API.Repositorio;
+using API.Repositorio.Setor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,13 +56,13 @@ namespace API.Controllers
             }
         }
 
-        public void Delete([FromBody] Setor setor)
+        public void Delete([FromUri] int id)
         {
-            if (setor != null)
+            if (id != 0)
             {
                 using (var db = new SetorRep())
                 {
-                    db.Delete(setor);
+                    db.Delete(id);
                 }
             }
         }

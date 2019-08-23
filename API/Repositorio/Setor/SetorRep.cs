@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace API.Repositorio
+namespace API.Repositorio.Setor
 {
     public class SetorRep : RepositorioBase<API.Models.Setor>
     {

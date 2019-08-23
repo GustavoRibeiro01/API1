@@ -11,7 +11,7 @@ namespace API.Models
     {
         [Key]
         public int id { get; set; }
-        public string antena { get; set; }
+        public int? antena { get; set; }
     
     }
 }

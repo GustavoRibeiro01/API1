@@ -56,13 +56,13 @@ namespace API.Controllers
             }
         }
 
-        public void Delete([FromBody] Usuario usuario)
+        public void Delete([FromUri] int id)
         {
-            if (usuario != null)
+            if (id != 0)
             {
                 using (var dbCliente = new UsuarioRep())
                 {
-                    dbCliente.Delete(usuario);
+                    dbCliente.Delete(id);
                 }
             }
         }
