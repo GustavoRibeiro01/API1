@@ -28,5 +28,12 @@ namespace API.Repositorio.Cliente
 
             return db.Query<API.Models.Cliente>(query).ToList();
         }
+
+        public void Delete(int id)
+        {
+            query = $@"DELETE FROM cliente WHERE id = {id}";
+
+            db.Execute(query);
+        }
     }
 }
