@@ -7,6 +7,7 @@ using Dapper.Contrib.Extensions;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Dapper;
 
 namespace API.Repositorio
 {
@@ -46,6 +47,24 @@ namespace API.Repositorio
         public virtual IEnumerable<T> GetAll()
         {
             return db.GetAll<T>();
+        }
+
+        /// <summary>
+        /// Consulta uma query manualmente
+        /// </summary>
+        public virtual IEnumerable<T> Query(string query)
+        {
+            return db.Query<T>(query);
+        }
+
+        /// <summary>
+        /// Executa uma storedProcedure sem parametro
+        /// </summary>
+        public virtual IEnumerable<T> Stored(string storedName)
+        {
+            //var p = new DynamicParameters();
+            //p.Add("id", "123");
+            return db.Query<T>(storedName, null, commandType: CommandType.StoredProcedure);
         }
 
         /// <summary>

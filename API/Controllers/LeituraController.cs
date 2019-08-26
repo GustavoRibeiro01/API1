@@ -1,5 +1,6 @@
 ﻿using API.Models;
 using API.Repositorio.Leitura;
+using API.Repositorio.operacaoTags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,30 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Leitura/GetId")]
-        public Leitura GetId([FromBody] int Id)
+        public Leitura GetId([FromUri] int id)
         {
-            using (var db = new LeituraRep())
+            if (id != 0)
             {
-                return db.Get(Id);
+                using (var db = new LeituraRep())
+                {
+                    return db.Get(id);
+                }
+            }
+
+            return null;
+        }
+
+        [HttpGet]
+        [Route("api/Leitura/UltimasOperacoes")]
+        public IEnumerable<operacaoTags> UltimasOperacoes()
+        {
+            using (var dbLeitura = new operacaoTagsRep())
+            {
+                return dbLeitura.Stored("SP_RETORNA_ULTIMAS_OP").ToList();
+                //return dbLeitura.Query("select leitura.tag as tag, max(leitura.antena) as antena, max(leitura.operacao) as 'operacao_atual' from leitura group by tag").ToList();
             }
         }
+
 
         public void Post([FromBody] Leitura leitura)
         {
