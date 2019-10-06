@@ -14,7 +14,7 @@ namespace API.Models
         public string nome { get; set; }
         public string cpf { get; set; }
         public string email { get; set; }
-        public string endereco { get; set; }
+        public string cidade { get; set; }
         public string sexo { get; set; }
         public string profissao { get; set; }
         public string empresa { get; set; }

@@ -6,14 +6,15 @@ using System.Web;
 
 namespace API.Models
 {
-    [Table("usuario")]
-    public class Usuario
+    [Table("empresa")]
+    public class Empresa
     {
         [Key]
         public int id { get; set; }
+        public int id_usuario { get; set; }
         public string nome { get; set; }
-        public string senha { get; set; }
-        public string email { get; set; }
-        public int id_grupo { get; set; }
+        public string razao { get; set; }
+        public string cidade { get; set; }
+        public string ramo { get; set; }
     }
 }
