@@ -1,6 +1,8 @@
-﻿using API.Models;
+﻿using API.Data_Transfer_Object.Empresa;
+using API.Models;
 using API.Repositorio.Antena;
 using API.Repositorio.Empresa;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,15 +36,39 @@ namespace API.Controllers
             }
         }
 
-        public void Post([FromBody] Empresa empresa)
+        [HttpPost]
+        [Route("api/Empresa/GravarEmpresaDto")]
+        public void Post([FromBody] DtoEmpresa empresa)
         {
 
             if (empresa != null)
             {
                 using (var db = new EmpresaRep())
                 {
-                    db.Insert(empresa);
+                    db.GravarEmpresa(empresa);
                 }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Empresa/GravarEmpresa")]
+        public void Post([FromBody] JObject obj)
+        {
+
+            if (obj != null)
+            {
+                Usuario usuario = obj["usuario"].ToObject<Usuario>();
+                Empresa empresa = obj["empresa"].ToObject<Empresa>();
+                
+                if(usuario != null && empresa !=null)
+                {
+                    using (var db = new EmpresaRep())
+                    {
+                        db.GravarEmpresa(usuario, empresa);
+                    }
+
+                }
+                
             }
         }
 

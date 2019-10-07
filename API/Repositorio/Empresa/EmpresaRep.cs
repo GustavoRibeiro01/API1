@@ -21,7 +21,7 @@ namespace API.Repositorio.Empresa
                 using (TransactionScope tscope = new TransactionScope())
                 {
 
-                   var usuario = new Models.Usuario();
+                    var usuario = new Models.Usuario();
                     var empresa = new Models.Empresa();
 
                     usuario.nome = dtoempresa.nome;
@@ -31,7 +31,7 @@ namespace API.Repositorio.Empresa
 
                     using (var db = new UsuarioRep())
                     {
-                        empresa.id_usuario = (int) db.Insert(usuario);
+                        empresa.id_usuario = (int)db.Insert(usuario);
                     }
 
                     empresa.nome = dtoempresa.nome;
@@ -49,7 +49,33 @@ namespace API.Repositorio.Empresa
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Erro ao gravar dados!");
+            }
+        }
+
+        public void GravarEmpresa(Models.Usuario usuario, Models.Empresa empresa)
+        {
+            try
+            {
+                using (TransactionScope tscope = new TransactionScope())
+                {
+                   
+                    using (var db = new UsuarioRep())
+                    {
+                        empresa.id_usuario = (int)db.Insert(usuario);
+                    }
+
+                    using (var db = new EmpresaRep())
+                    {
+                        db.Insert(empresa);
+                    }
+
+                    tscope.Complete();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao gravar dados!");
             }
         }
 
