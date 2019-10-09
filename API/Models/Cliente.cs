@@ -19,6 +19,7 @@ namespace API.Models
         public string profissao { get; set; }
         public string empresa { get; set; }
         public string tag { get; set; }
+        public int idade { get; set; }
 
     }
 }
