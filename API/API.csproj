@@ -146,6 +146,8 @@
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Data Transfer Object\Empresa\DtoEmpresa.cs" />
+    <Compile Include="Data Transfer Object\Setor\DtoRastreio.cs" />
+    <Compile Include="Data Transfer Object\Setor\DtoUltimoSetorTag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

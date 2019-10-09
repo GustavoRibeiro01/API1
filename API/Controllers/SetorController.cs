@@ -1,4 +1,5 @@
-﻿using API.Models;
+﻿using API.Data_Transfer_Object.Setor;
+using API.Models;
 using API.Repositorio.Setor;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,26 @@ namespace API.Controllers
             using (var db = new SetorRep())
             {
                 return db.Get(Id);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/UltimoSetorTag")]
+        public List<DtoUltimoSetorTag> UltimoSetorTag()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.UltimoSetorTag("UltimoSetorTag").ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/Rastreio")]
+        public List<DtoRastreio> Rastreio(string nome)
+        {
+            using (var db = new SetorRep())
+            {
+                return db.Rastreio("Rastreio", nome).ToList();
             }
         }
 
