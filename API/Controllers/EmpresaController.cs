@@ -72,6 +72,42 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Empresa/UpdateEmpresaDto")]
+        public void UpdateEmpresaDto([FromBody] DtoEmpresa empresa)
+        {
+
+            if (empresa != null)
+            {
+                using (var db = new EmpresaRep())
+                {
+                    db.UpdateEmpresa(empresa);
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("api/Empresa/UpdateEmpresa")]
+        public void UpdateEmpresa([FromBody] JObject obj)
+        {
+
+            if (obj != null)
+            {
+                Usuario usuario = obj["usuario"].ToObject<Usuario>();
+                Empresa empresa = obj["empresa"].ToObject<Empresa>();
+
+                if (usuario != null && empresa != null)
+                {
+                    using (var db = new EmpresaRep())
+                    {
+                        db.UpdateEmpresa(usuario, empresa);
+                    }
+
+                }
+
+            }
+        }
+
         public void Put([FromBody] Empresa empresa)
         {
             if (empresa != null)
