@@ -35,6 +35,14 @@ namespace API.Repositorio.Setor
             return db.Query<DtoFaixaIdade>(storedName, null, commandType: CommandType.StoredProcedure);
         }
 
+        public IEnumerable<DtoFaixaIdade> FaixaIdadePessoas(string storedName, int idSetor)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idsetor", idSetor);
+
+            return db.Query<DtoFaixaIdade>(storedName, parameters, commandType: CommandType.StoredProcedure);
+        }
+
         public IEnumerable<DtoPessoasSetor> PessoasSetor(string storedName, int idSetor)
         {
             var parameters = new DynamicParameters();

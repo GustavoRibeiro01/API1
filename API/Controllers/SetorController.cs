@@ -35,72 +35,72 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Setor/UltimoSetorTag")]
+        [Route("api/Setor/sp_UltimoSetorTag")]
         public List<DtoUltimoSetorTag> UltimoSetorTag()
         {
             using (var db = new SetorRep())
             {
-                return db.UltimoSetorPessoa("UltimoSetorTag").ToList();
+                return db.UltimoSetorPessoa("sp_UltimoSetorTag").ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/UltimoSetorPessoa")]
+        [Route("api/Setor/sp_UltimoSetorPessoa")]
         public List<DtoUltimoSetorTag> UltimoSetorPessoa()
         {
             using (var db = new SetorRep())
             {
-                return db.UltimoSetorPessoa("UltimoSetorPessoa").ToList();
+                return db.UltimoSetorPessoa("sp_UltimoSetorPessoa").ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/Rastreio")]
+        [Route("api/Setor/sp_Rastreio")]
         public List<DtoRastreio> Rastreio(string nome)
         {
             using (var db = new SetorRep())
             {
-                return db.Rastreio("Rastreio", nome).ToList();
+                return db.Rastreio("sp_Rastreio", nome).ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/QtdPessoasSetor")]
+        [Route("api/Setor/sp_QtdPessoasSetor")]
         public List<DtoQtdPessoasSetor> QtdPessoasSetor()
         {
             using (var db = new SetorRep())
             {
-                return db.QtdPessoasSetor("QtdPessoasSetor").ToList();
+                return db.QtdPessoasSetor("sp_QtdPessoasSetor").ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/PessoasSetor")]
+        [Route("api/Setor/sp_PessoasSetor")]
         public List<DtoPessoasSetor> PessoasSetor(int idSetor)
         {
             using (var db = new SetorRep())
             {
-                return db.PessoasSetor("PessoasSetor", idSetor).ToList();
+                return db.PessoasSetor("sp_PessoasSetor", idSetor).ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/FaixaIdadeEvento")]
+        [Route("api/Setor/sp_FaixaIdadeEvento")]
         public List<DtoFaixaIdade> FaixaIdadeEvento()
         {
             using (var db = new SetorRep())
             {
-                return db.FaixaIdadePessoas("FaixaIdadeEvento").ToList();
+                return db.FaixaIdadePessoas("sp_FaixaIdadeEvento").ToList();
             }
         }
 
         [HttpGet]
-        [Route("api/Setor/FaixaIdadeSetor")]
-        public List<DtoFaixaIdade> FaixaIdadeSetor()
+        [Route("api/Setor/sp_FaixaIdadeSetor")]
+        public List<DtoFaixaIdade> FaixaIdadeSetor(int idSetor)
         {
             using (var db = new SetorRep())
             {
-                return db.FaixaIdadePessoas("FaixaIdadeSetor").ToList();
+                return db.FaixaIdadePessoas("sp_FaixaIdadeSetor", idSetor).ToList();
             }
         }
 
