@@ -5,13 +5,9 @@ using System.Web;
 
 namespace API.Data_Transfer_Object.Setor
 {
-    public class DtoUltimoSetorTag
+    public class DtoPessoasSetor
     {
         public string tag { get; set; }
-        public int id_setor { get; set; }
-        public string setor { get; set; }
-        public int id_cliente { get; set; }
         public string cliente { get; set; }
-        public int antena { get; set; }
     }
 }

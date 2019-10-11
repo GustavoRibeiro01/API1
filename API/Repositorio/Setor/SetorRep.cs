@@ -12,7 +12,7 @@ namespace API.Repositorio.Setor
     {
         string query = "";
         
-        public IEnumerable<DtoUltimoSetorTag> UltimoSetorTag(string storedName)
+        public IEnumerable<DtoUltimoSetorTag> UltimoSetorPessoa(string storedName)
         {
             return db.Query<DtoUltimoSetorTag>(storedName, null, commandType: CommandType.StoredProcedure);
         }
@@ -23,6 +23,19 @@ namespace API.Repositorio.Setor
             parameters.Add("nome", nome);
 
             return db.Query<DtoRastreio>(storedName, parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<DtoQtdPessoasSetor> QtdPessoasSetor(string storedName)
+        {
+            return db.Query<DtoQtdPessoasSetor>(storedName, null, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<DtoPessoasSetor> PessoasSetor(string storedName, int idSetor)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idSetor", idSetor);
+
+            return db.Query<DtoPessoasSetor>(storedName, parameters, commandType: CommandType.StoredProcedure);
         }
 
         public void Delete(int id)

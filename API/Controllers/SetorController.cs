@@ -40,7 +40,17 @@ namespace API.Controllers
         {
             using (var db = new SetorRep())
             {
-                return db.UltimoSetorTag("UltimoSetorTag").ToList();
+                return db.UltimoSetorPessoa("UltimoSetorTag").ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/UltimoSetorPessoa")]
+        public List<DtoUltimoSetorTag> UltimoSetorPessoa()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.UltimoSetorPessoa("UltimoSetorPessoa").ToList();
             }
         }
 
@@ -51,6 +61,26 @@ namespace API.Controllers
             using (var db = new SetorRep())
             {
                 return db.Rastreio("Rastreio", nome).ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/QtdPessoasSetor")]
+        public List<DtoQtdPessoasSetor> QtdPessoasSetor()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.QtdPessoasSetor("QtdPessoasSetor").ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/PessoasSetor")]
+        public List<DtoPessoasSetor> PessoasSetor(int idSetor)
+        {
+            using (var db = new SetorRep())
+            {
+                return db.PessoasSetor("PessoasSetor", idSetor).ToList();
             }
         }
 
