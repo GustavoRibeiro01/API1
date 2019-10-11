@@ -28,11 +28,21 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Empresa/GetId")]
-        public Empresa GetId([FromBody] int Id)
+        public Empresa GetId([FromUri] int Id)
         {
             using (var db = new EmpresaRep())
             {
                 return db.Get(Id);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Empresa/GetEmpresaUsuario")]
+        public Empresa GetEmpresaUsuario([FromUri] int IdUsuario)
+        {
+            using (var db = new EmpresaRep())
+            {
+                return db.GetEmpresaUsuario(IdUsuario);
             }
         }
 

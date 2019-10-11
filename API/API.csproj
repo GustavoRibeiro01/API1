@@ -151,6 +151,7 @@
     <Compile Include="Data Transfer Object\Setor\DtoQtdPessoasSetor.cs" />
     <Compile Include="Data Transfer Object\Setor\DtoRastreio.cs" />
     <Compile Include="Data Transfer Object\Setor\DtoUltimoSetorTag.cs" />
+    <Compile Include="Data Transfer Object\Usuario\DtoLogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

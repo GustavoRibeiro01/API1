@@ -1,4 +1,5 @@
-﻿using API.Models;
+﻿using API.Data_Transfer_Object.Usuario;
+using API.Models;
 using API.Repositorio.Usuario;
 using System;
 using System.Collections.Generic;
@@ -25,11 +26,21 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Usuario/GetId")]
-        public Usuario GetId([FromBody] Int32 Id)
+        public Usuario GetId([FromUri] Int32 Id)
         {
             using (var db = new UsuarioRep())
             {
                 return db.Get(Id);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Usuario/Login")]
+        public DtoLogin Login([FromUri] string nome, string senha)
+        {
+            using (var db = new UsuarioRep())
+            {
+                return db.Login(nome, senha);
             }
         }
 

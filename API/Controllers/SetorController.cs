@@ -26,7 +26,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Setor/GetId")]
-        public Setor GetId([FromBody] int Id)
+        public Setor GetId([FromUri] int Id)
         {
             using (var db = new SetorRep())
             {

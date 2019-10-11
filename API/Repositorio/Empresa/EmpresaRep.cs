@@ -14,6 +14,13 @@ namespace API.Repositorio.Empresa
     {
         private string query = "";
 
+        public Models.Empresa GetEmpresaUsuario(int IdUsuario)
+        {
+            query = $@"SELECT * FROM empresa WHERE id_usuario = {IdUsuario}";
+
+            return db.Query<Models.Empresa>(query).FirstOrDefault();
+        }
+
         public void GravarEmpresa(DtoEmpresa dtoempresa)
         {
             try
@@ -146,6 +153,7 @@ namespace API.Repositorio.Empresa
                 throw new Exception("Erro ao gravar dados!");
             }
         }
+
         public void Delete(int id)
         {
             var empresa = this.Get(id);

@@ -25,7 +25,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/Antena/GetId")]
-        public Antena GetId([FromBody] int Id)
+        public Antena GetId([FromUri] int Id)
         {
             using (var db = new AntenaRep())
             {

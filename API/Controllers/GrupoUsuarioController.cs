@@ -26,7 +26,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("api/GrupoUsuario/GetId")]
-        public GrupoUsuario GetId([FromBody] int Id)
+        public GrupoUsuario GetId([FromUri] int Id)
         {
             using (var db = new GrupoUsuarioRep())
             {
