@@ -146,6 +146,7 @@
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Data Transfer Object\Empresa\DtoEmpresa.cs" />
+    <Compile Include="Data Transfer Object\Setor\DtoFaixaIdade.cs" />
     <Compile Include="Data Transfer Object\Setor\DtoPessoasSetor.cs" />
     <Compile Include="Data Transfer Object\Setor\DtoQtdPessoasSetor.cs" />
     <Compile Include="Data Transfer Object\Setor\DtoRastreio.cs" />

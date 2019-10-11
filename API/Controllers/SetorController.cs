@@ -84,6 +84,26 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Setor/FaixaIdadeEvento")]
+        public List<DtoFaixaIdade> FaixaIdadeEvento()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.FaixaIdadePessoas("FaixaIdadeEvento").ToList();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/FaixaIdadeSetor")]
+        public List<DtoFaixaIdade> FaixaIdadeSetor()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.FaixaIdadePessoas("FaixaIdadeSetor").ToList();
+            }
+        }
+
         public void Post([FromBody] Setor setor)
         {
 
