@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Newtonsoft.Json.Linq;
 
 namespace API.Controllers
 {
@@ -15,7 +16,7 @@ namespace API.Controllers
     public class UsuarioController : ApiController
     {
         [HttpGet]
-        [Route("api/Usuario/Get")]
+        [Route("api/Usuario")]
         public IEnumerable<Usuario> Get()
         {
             using (var dbUsuario = new UsuarioRep())
@@ -25,7 +26,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Usuario/GetId")]
+        [Route("api/Usuario/{id}")]
         public Usuario GetId([FromUri] Int32 Id)
         {
             using (var db = new UsuarioRep())
@@ -34,13 +35,13 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/Usuario/Login")]
-        public DtoLogin Login([FromUri] string nome, string senha)
+        public DtoLogin Login([FromBody] dtoAuthentication dto)
         {
             using (var db = new UsuarioRep())
             {
-                return db.Login(nome, senha);
+                return db.Login(dto.nome, dto.senha);
             }
         }
 

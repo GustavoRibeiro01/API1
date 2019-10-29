@@ -15,7 +15,7 @@ namespace API.Controllers
     public class GrupoUsuarioController : ApiController
     {
         [HttpGet]
-        [Route("api/GrupoUsuario/Get")]
+        [Route("api/GrupoUsuario")]
         public IEnumerable<GrupoUsuario> Get()
         {
             using (var db = new GrupoUsuarioRep())
@@ -25,7 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/GrupoUsuario/GetId")]
+        [Route("api/GrupoUsuario/{id}")]
         public GrupoUsuario GetId([FromUri] int Id)
         {
             using (var db = new GrupoUsuarioRep())

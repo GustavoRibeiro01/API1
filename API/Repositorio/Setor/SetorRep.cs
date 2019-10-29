@@ -43,6 +43,8 @@ namespace API.Repositorio.Setor
             return db.Query<DtoFaixaIdade>(storedName, parameters, commandType: CommandType.StoredProcedure);
         }
 
+
+
         public IEnumerable<DtoPessoasSetor> PessoasSetor(string storedName, int idSetor)
         {
             var parameters = new DynamicParameters();
@@ -56,6 +58,19 @@ namespace API.Repositorio.Setor
             query = $@"DELETE FROM setor WHERE id = {id}";
 
             db.Execute(query);
+        }
+
+        public DtoDadosSetor DadosEventoSetor(string storedName, int idSetor)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idSetor", idSetor);
+
+            return db.Query<DtoDadosSetor>(storedName, parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+        public DtoDadosSetor DadosEventoGeral(string storedName)
+        {
+            return db.Query<DtoDadosSetor>(storedName, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }

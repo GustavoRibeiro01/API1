@@ -17,7 +17,7 @@ namespace API.Controllers
     public class EmpresaController : ApiController
     {
         [HttpGet]
-        [Route("api/Empresa/Get")]
+        [Route("api/Empresa")]
         public IEnumerable<Empresa> Get()
         {
             using (var db = new EmpresaRep())
@@ -27,7 +27,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Empresa/GetId")]
+        [Route("api/Empresa/{id}")]
         public Empresa GetId([FromUri] int Id)
         {
             using (var db = new EmpresaRep())

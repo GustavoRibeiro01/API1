@@ -14,7 +14,7 @@ namespace API.Controllers
     public class AntenaController : ApiController
     {
         [HttpGet]
-        [Route("api/Antena/Get")]
+        [Route("api/Antena")]
         public IEnumerable<Antena> Get()
         {
             using (var db = new AntenaRep())
@@ -24,7 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Antena/GetId")]
+        [Route("api/Antena/{id}")]
         public Antena GetId([FromUri] int Id)
         {
             using (var db = new AntenaRep())

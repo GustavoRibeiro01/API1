@@ -16,7 +16,7 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        [Route("api/Leitura/Get")]
+        [Route("api/Leitura")]
         public IEnumerable<Leitura> Get()
         {
             using (var db = new LeituraRep())
@@ -26,7 +26,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Leitura/GetId")]
+        [Route("api/Leitura/{id}")]
         public Leitura GetId([FromUri] int id)
         {
             if (id != 0)

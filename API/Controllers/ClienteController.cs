@@ -19,7 +19,7 @@ namespace API.Controllers
     {
 
         [HttpGet]
-        [Route("api/Cliente/Get")]
+        [Route("api/Cliente")]
         public IEnumerable<Cliente> Get()
         {
             using (var dbCliente = new ClienteRep())
@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Cliente/GetId")]
+        [Route("api/Cliente/{id}")]
         public Cliente Get([FromUri]int id)
         {
             if (id != 0)

@@ -15,7 +15,7 @@ namespace API.Controllers
     public class SetorController : ApiController
     {
         [HttpGet]
-        [Route("api/Setor/Get")]
+        [Route("api/Setor")]
         public IEnumerable<Setor> Get()
         {
             using (var db = new SetorRep())
@@ -25,7 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Setor/GetId")]
+        [Route("api/Setor/{id}")]
         public Setor GetId([FromUri] int Id)
         {
             using (var db = new SetorRep())
@@ -135,6 +135,26 @@ namespace API.Controllers
                 {
                     db.Delete(id);
                 }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Setor/DadosSetor")]
+        public DtoDadosSetor DadosSetor([FromBody] int idSetor)
+        {
+            using (var db = new SetorRep())
+            {
+                return db.DadosEventoSetor("sp_DadosEvento_Setor", idSetor);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/DadosGeral")]
+        public DtoDadosSetor DadosGeral()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.DadosEventoGeral("sp_DadosEvento_Geral");
             }
         }
     }
