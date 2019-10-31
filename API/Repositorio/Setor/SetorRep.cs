@@ -72,5 +72,17 @@ namespace API.Repositorio.Setor
         {
             return db.Query<DtoDadosSetor>(storedName, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
+
+        public IEnumerable<DtoListaConfig> GetListaConfig()
+        {
+            query = $@"select setor.id as idSetor, setor.descricao, setor.abreviacao,
+                    (
+	                    select count(*) from antena 
+	                    inner join setor_antena on antena.id=setor_antena.id_antena
+	                    where setor_antena.id_setor=setor.id
+                    ) as qtdAntena  from setor";
+
+            return db.Query<DtoListaConfig>(query).ToList();
+        }
     }
 }

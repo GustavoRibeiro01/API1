@@ -157,5 +157,15 @@ namespace API.Controllers
                 return db.DadosEventoGeral("sp_DadosEvento_Geral");
             }
         }
+
+        [HttpGet]
+        [Route("api/Setor/ListaConfig")]
+        public IEnumerable<DtoListaConfig> ListaConfig()
+        {
+            using (var db = new SetorRep())
+            {
+                return db.GetListaConfig();
+            }
+        }
     }
 }
