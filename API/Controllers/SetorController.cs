@@ -1,4 +1,5 @@
-﻿using API.Data_Transfer_Object.Setor;
+﻿using API.Data_Transfer_Object.Antena;
+using API.Data_Transfer_Object.Setor;
 using API.Models;
 using API.Repositorio.Setor;
 using System;
@@ -104,6 +105,8 @@ namespace API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Setor")]
         public void Post([FromBody] Setor setor)
         {
 
@@ -116,6 +119,8 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Setor")]
         public void Put([FromBody] Setor setor)
         {
             if (setor != null)
@@ -165,6 +170,26 @@ namespace API.Controllers
             using (var db = new SetorRep())
             {
                 return db.GetListaConfig();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Setor/ListaConfigDetalhe")]
+        public IEnumerable<DtoListaConfigDetalhe> ListaConfig(int idSetor)
+        {
+            using (var db = new SetorRep())
+            {
+                return db.GetListaConfigDetalhe(idSetor);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Setor/Deleta")]
+        public void DeleteSetor([FromBody] dtoAddAntenaSetor idSetor)
+        {
+            using (var db = new SetorRep())
+            {
+                db.DeleteAll(idSetor.id_setor);
             }
         }
     }

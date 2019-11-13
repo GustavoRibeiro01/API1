@@ -27,12 +27,12 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/Empresa/{id}")]
-        public Empresa GetId([FromUri] int Id)
+        [Route("api/Empresa/getEmpresaUser")]
+        public dtoEmpresaUser Gett([FromUri] int Id)
         {
             using (var db = new EmpresaRep())
             {
-                return db.Get(Id);
+                return db.GetListaEmpresaUser(Id);
             }
         }
 
@@ -136,6 +136,20 @@ namespace API.Controllers
                 using (var db = new EmpresaRep())
                 {
                     db.Delete(id);
+                }
+            }
+        }
+
+        [HttpPut]
+        [Route("api/Empresa/spUpdate")]
+        public void spUpdate([FromBody] dtoEmpresaUser empresa)
+        {
+
+            if (empresa != null)
+            {
+                using (var db = new EmpresaRep())
+                {
+                    db.spUpdateEmpresa(empresa);
                 }
             }
         }

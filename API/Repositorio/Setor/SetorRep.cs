@@ -60,6 +60,14 @@ namespace API.Repositorio.Setor
             db.Execute(query);
         }
 
+        public void DeleteAll(int id)
+        {
+            query = $@"delete setor_antena where setor_antena.id_setor={id}
+                        delete setor where setor.id={id}";
+
+            db.Execute(query);
+        }
+
         public DtoDadosSetor DadosEventoSetor(string storedName, int idSetor)
         {
             var parameters = new DynamicParameters();
@@ -83,6 +91,17 @@ namespace API.Repositorio.Setor
                     ) as qtdAntena  from setor";
 
             return db.Query<DtoListaConfig>(query).ToList();
+        }
+
+        public IEnumerable<DtoListaConfigDetalhe> GetListaConfigDetalhe(int id)
+        {
+            query = $@"select setor.id as idSetor, setor.descricao, setor.abreviacao, antena.id as idAntena, antena.antena 
+                    from setor 
+                    left join setor_antena on setor.id=setor_antena.id_setor
+                    left join antena on antena.id=setor_antena.id_antena 
+                    where setor.id=" + id + "";
+
+            return db.Query<DtoListaConfigDetalhe>(query).ToList();
         }
     }
 }

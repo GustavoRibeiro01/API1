@@ -52,6 +52,8 @@ namespace API.Controllers
         }
 
 
+        [HttpPost]
+        [Route("api/Leitura")]
         public void Post([FromBody] Leitura leitura)
         {
 

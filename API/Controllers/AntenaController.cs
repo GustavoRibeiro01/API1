@@ -1,4 +1,5 @@
-﻿using API.Models;
+﻿using API.Data_Transfer_Object.Antena;
+using API.Models;
 using API.Repositorio.Antena;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,36 @@ namespace API.Controllers
             using (var db = new AntenaRep())
             {
                 return db.Get(Id);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Antena/getDisponiveis")]
+        public IEnumerable<Antena> GetAntenasDisp()
+        {
+            using (var db = new AntenaRep())
+            {
+                return db.GetDisponiveis();
+            }
+        }
+
+        [HttpPost]
+        [Route("api/AntenaSetor")]
+        public void addAntenaSetor([FromBody] dtoAddAntenaSetor dto)
+        {
+            using (var db = new AntenaRep())
+            {
+                db.addAntenaSetor(dto.id_setor, dto.id_antena);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Antena/DeleteAntenaSetor")]
+        public void deleteAntenaSetor([FromBody] dtoAddAntenaSetor dto)
+        {
+            using (var db = new AntenaRep())
+            {
+                db.deleteAntenaSetor(dto.id_setor, dto.id_antena);
             }
         }
 

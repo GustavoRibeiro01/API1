@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using API.Repositorio.Usuario;
 using System.Transactions;
+using System.Data;
 
 namespace API.Repositorio.Empresa
 {
@@ -171,6 +172,30 @@ namespace API.Repositorio.Empresa
                 tscope.Complete();
             }
                 
+        }
+
+        public dtoEmpresaUser GetListaEmpresaUser(int id)
+        {
+            query = $@"select empresa.id as 'idEmpresa', empresa.nome as 'nomeEmpresa', empresa.razao as 'razaoEmpresa', 
+                    empresa.cidade as 'cidadeEmpresa', empresa.ramo as 'ramoEmpresa', setor.id as 'idSetor', setor.descricao as 'descricaoSetor', setor.abreviacao as 'abreviacaoSetor',  
+                    usuario.nome 'nomeUsuario' from empresa inner join usuario on usuario.id=empresa.id_usuario inner join setor on setor.id=empresa.id_setor
+                    where empresa.id={id}";
+
+            return db.Query<dtoEmpresaUser>(query).FirstOrDefault();
+        }
+
+        public dtoEmpresaUser spUpdateEmpresa(dtoEmpresaUser param)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idEmpresa", param.idEmpresa);
+            parameters.Add("nomeUsuario", param.nomeUsuario);
+            parameters.Add("nomeEmpresa", param.nomeEmpresa);
+            parameters.Add("razaoEmpresa", param.razaoEmpresa);
+            parameters.Add("cidadeEmpresa", param.cidadeEmpresa);
+            parameters.Add("ramoEmpresa", param.ramoEmpresa);
+            parameters.Add("idSetor", param.idSetor);
+
+            return db.Query<dtoEmpresaUser>("sp_atualizaEmpresa", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }

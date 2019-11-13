@@ -13,7 +13,6 @@ namespace API.Models
         public int id { get; set; }
         public string descricao { get; set; }
         public string abreviacao { get; set; }
-        public int id_antena { get; set; }
 
     }
 }
