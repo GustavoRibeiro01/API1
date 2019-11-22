@@ -1,4 +1,5 @@
-﻿using API.Models;
+﻿using API.Data_Transfer_Object.Cliente;
+using API.Models;
 using API.Repositorio.Leitura;
 using API.Repositorio.operacaoTags;
 using System;
@@ -51,6 +52,28 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Leitura/Rastreio")]
+        public HttpResponseMessage Rastreio([FromUri] string nome)
+        {
+            try
+            {
+                List<DtoRastreio> result;
+
+                using (var dbLeitura = new LeituraRep())
+                {
+                    result = dbLeitura.Rastreio(nome).ToList();
+
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e);
+            }
+            
+        }
 
         [HttpPost]
         [Route("api/Leitura")]
