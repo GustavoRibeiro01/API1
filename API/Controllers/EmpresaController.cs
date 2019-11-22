@@ -140,6 +140,20 @@ namespace API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Empresa/Grava")]
+        public void Post([FromBody] dtoEmpresaUser empresa)
+        {
+
+            if (empresa != null)
+            {
+                using (var db = new EmpresaRep())
+                {
+                    db.spInsertEmpresa(empresa);
+                }
+            }
+        }
+
         [HttpPut]
         [Route("api/Empresa/spUpdate")]
         public void spUpdate([FromBody] dtoEmpresaUser empresa)
@@ -151,6 +165,16 @@ namespace API.Controllers
                 {
                     db.spUpdateEmpresa(empresa);
                 }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Empresa/Deleta")]
+        public void DeleteEmpresa([FromBody] int idEmpresa)
+        {
+            using (var db = new EmpresaRep())
+            {
+                db.DeleteAll(idEmpresa);
             }
         }
     }

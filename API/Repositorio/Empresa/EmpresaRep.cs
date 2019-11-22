@@ -184,6 +184,19 @@ namespace API.Repositorio.Empresa
             return db.Query<dtoEmpresaUser>(query).FirstOrDefault();
         }
 
+        public dtoEmpresaUser spInsertEmpresa(dtoEmpresaUser param)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("nomeUsuario", param.nomeUsuario);
+            parameters.Add("nomeEmpresa", param.nomeEmpresa);
+            parameters.Add("razaoEmpresa", param.razaoEmpresa);
+            parameters.Add("cidadeEmpresa", param.cidadeEmpresa);
+            parameters.Add("ramoEmpresa", param.ramoEmpresa);
+            parameters.Add("idSetor", param.idSetor);
+
+            return db.Query<dtoEmpresaUser>("sp_cadastraEmpresa", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
         public dtoEmpresaUser spUpdateEmpresa(dtoEmpresaUser param)
         {
             var parameters = new DynamicParameters();
@@ -196,6 +209,14 @@ namespace API.Repositorio.Empresa
             parameters.Add("idSetor", param.idSetor);
 
             return db.Query<dtoEmpresaUser>("sp_atualizaEmpresa", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+        public void DeleteAll(int id)
+        {
+            query = $@"delete usuario where usuario.id in (select empresa.id_usuario from  empresa where empresa.id={id})
+                       delete empresa where empresa.id={id}";
+
+            db.Execute(query);
         }
     }
 }

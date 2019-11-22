@@ -44,6 +44,18 @@ namespace API.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("api/Antena/AntenaStatus")]
+        public IEnumerable<dtoAntenaStatus> GetAntenasStatus()
+        {
+            using (var db = new AntenaRep())
+            {
+                return db.GetAntenaStatus();
+            }
+        }
+
+
         [HttpPost]
         [Route("api/AntenaSetor")]
         public void addAntenaSetor([FromBody] dtoAddAntenaSetor dto)
@@ -61,6 +73,26 @@ namespace API.Controllers
             using (var db = new AntenaRep())
             {
                 db.deleteAntenaSetor(dto.id_setor, dto.id_antena);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Antena/DeleteAntena")]
+        public void deleteAntenaSetor([FromBody] int idAntena)
+        {
+            using (var db = new AntenaRep())
+            {
+                db.deleteAntena(idAntena);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Antena/addProxima")]
+        public void addProx()
+        {
+            using (var db = new AntenaRep())
+            {
+                db.addProxAntena();
             }
         }
 
