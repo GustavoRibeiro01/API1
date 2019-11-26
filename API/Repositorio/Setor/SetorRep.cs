@@ -43,8 +43,6 @@ namespace API.Repositorio.Setor
             return db.Query<DtoFaixaIdade>(storedName, parameters, commandType: CommandType.StoredProcedure);
         }
 
-
-
         public IEnumerable<DtoPessoasSetor> PessoasSetor(string storedName, int idSetor)
         {
             var parameters = new DynamicParameters();
@@ -102,6 +100,14 @@ namespace API.Repositorio.Setor
                     where setor.id=" + id + "";
 
             return db.Query<DtoListaConfigDetalhe>(query).ToList();
+        }
+
+        public IEnumerable<DtoRankPessoaSetor> RankPessoasSetor(int IdSetor)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idSetor", IdSetor);
+
+            return db.Query<DtoRankPessoaSetor>("sp_rankPessoas_Setor", parameters, commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }

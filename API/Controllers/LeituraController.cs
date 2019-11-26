@@ -2,6 +2,7 @@
 using API.Models;
 using API.Repositorio.Leitura;
 using API.Repositorio.operacaoTags;
+using API.Repositorio.Setor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,6 +75,8 @@ namespace API.Controllers
             }
             
         }
+
+        
 
         [HttpPost]
         [Route("api/Leitura")]

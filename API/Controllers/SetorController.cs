@@ -192,5 +192,27 @@ namespace API.Controllers
                 db.DeleteAll(idSetor.id_setor);
             }
         }
+
+        [HttpGet]
+        [Route("api/Setor/sp_RankPessoasSetor")]
+        public HttpResponseMessage RankPessoasSetor([FromUri] int IdSetor)
+        {
+            try
+            {
+                List<DtoRankPessoaSetor> result;
+
+                using (var db = new SetorRep())
+                {
+                    result = db.RankPessoasSetor(IdSetor).ToList();
+
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
     }
 }
