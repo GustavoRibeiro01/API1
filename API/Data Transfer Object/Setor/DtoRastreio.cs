@@ -14,7 +14,7 @@ namespace API.Data_Transfer_Object.Setor
         public string descricaoItensSetor { get; set; }
         public string dia { get; set; }
         public DateTime data { get; set; }
-        public DateTime dataFIM { get; set; }
-        public int segundos { get; set; }
+        public string dataFIM { get; set; }
+        public string segundos { get; set; }
     }
 }
