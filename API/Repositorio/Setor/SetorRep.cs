@@ -103,5 +103,14 @@ namespace API.Repositorio.Setor
 
             return db.Query<DtoListaConfigDetalhe>(query).ToList();
         }
+
+        public IEnumerable<DtoRankPessoaSetor> RankPessoasSetor(int IdSetor)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("idSetor", IdSetor);
+
+            return db.Query<DtoRankPessoaSetor>("sp_rankPessoas_Setor", parameters, commandType: CommandType.StoredProcedure).ToList();
+        }
+
     }
 }
