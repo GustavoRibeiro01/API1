@@ -60,6 +60,8 @@ namespace API.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/Cliente/Gravar")]
         public void Post([FromBody] Cliente cliente)
         {
 
@@ -72,6 +74,8 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("api/Cliente/Alterar")]
         public void Put([FromBody] Cliente cliente)
         {
             if (cliente != null)
