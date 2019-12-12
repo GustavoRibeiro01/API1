@@ -74,7 +74,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("api/Cliente/Alterar")]
         public void Put([FromBody] Cliente cliente)
         {
@@ -86,7 +86,8 @@ namespace API.Controllers
                 }
             }
         }
-
+        [HttpDelete]
+        [Route("api/Cliente/Deletar")]
         public void Delete([FromUri] int id)
         {
             if (id != 0)
